@@ -1,18 +1,30 @@
+import java.util.Scanner;
+
 public class Snowman {
     public static void main(String[] args) {
-//        String logo = " ____        _        \n"
-//                + "|  _ \\ _   _| | _____ \n"
-//                + "| | | | | | | |/ / _ \\\n"
-//                + "| |_| | |_| |   <  __/\n"
-//                + "|____/ \\__,_|_|\\_\\___|\n";
-//        System.out.println("Hello from\n" + logo);
+        Scanner scanner = new Scanner(System.in);
         System.out.println("""
                 ____________________________________________________________
                 Hello! I'm snowman
                 What can I do for you?
                 ____________________________________________________________
-                Bye. Hope to see you again soon!
-                ____________________________________________________________
                 """);
+
+        while (true) {
+            String input = scanner.nextLine();
+
+            if(input.equals("bye")) {
+                System.out.println("""
+                        ____________________________________________________________
+                        Bye. Hope to see you again soon!
+                        ____________________________________________________________
+                        """);
+                break;
+            }
+
+            System.out.print("____________________________________________________________\n"
+            + input + "\n____________________________________________________________\n");
+
+        }
     }
 }
