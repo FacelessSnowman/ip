@@ -89,6 +89,23 @@ public class Snowman {
                     enterList.add(task);
                     printTask(task, enterList.size());
 
+                } else if (input.startsWith("delete ")) {
+                    String arg = input.substring(7).trim(); // everything after "delete "
+                    if (arg.isEmpty()) {
+                        throw new SnowmanException("Error, the task number to delete cannot be empty.");
+                    }
+                    try {
+                        int index = Integer.parseInt(arg) - 1; // convert to 0-based index
+                        Task task = enterList.remove(index);
+
+                        System.out.println(line);
+                        System.out.println("Noted. I've removed this task:");
+                        System.out.println("  " + task);
+                        System.out.println("Now you have " + enterList.size() + " tasks in the list.");
+                        System.out.println(line);
+                    } catch (NumberFormatException | IndexOutOfBoundsException e) {
+                        throw new SnowmanException("Might have missed out description/index of task.");
+                    }
                 } else {
                     throw new SnowmanException("Wait...what are you typing? Might have missed out description/index of task.");
                 }
