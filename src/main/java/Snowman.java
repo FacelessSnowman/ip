@@ -56,6 +56,24 @@ public class Snowman {
                 System.out.println("  " + task);
                 System.out.println(line);
 
+            } else if (input.startsWith("todo ")) {
+                String desc = input.substring(5);
+                Task task = new Todo(desc);
+                enterList.add(task);
+                printTask(task, enterList.size());
+
+            } else if (input.startsWith("deadline ")) {
+                String[] inputSegment = input.substring(9).split(" /by ", 2);
+                Task task = new Deadline(inputSegment[0], inputSegment[1]);
+                enterList.add(task);
+                printTask(task, enterList.size());
+
+            } else if (input.startsWith("event ")) {
+                String[] inputSegment = input.substring(6).split(" /from | /to ", 3);
+                Task task = new Event(inputSegment[0], inputSegment[1], inputSegment[2]);
+                enterList.add(task);
+                printTask(task, enterList.size());
+
             } else {
                 Task task = new Task(input);
                 enterList.add(task);
@@ -65,5 +83,14 @@ public class Snowman {
                 System.out.println(line);
             }
         }
+    }
+
+    private static void printTask(Task task, int size) {
+        String line = "____________________________________________________________";
+        System.out.println(line);
+        System.out.println("Got it. I've added this task:");
+        System.out.println("  " + task);
+        System.out.println("Now you have " + size + " tasks in the list.");
+        System.out.println(line);
     }
 }
