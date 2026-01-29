@@ -1,6 +1,6 @@
 package ip.src.main.java;
 
-public class Task {
+public abstract class Task {
     protected String description;
     protected boolean isDone;
 
@@ -24,6 +24,8 @@ public class Task {
             return " ";
         }
     }
+
+    public abstract String toFileString();
 
     @Override
     public String toString() {
