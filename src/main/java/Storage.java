@@ -81,6 +81,7 @@ public class Storage {
             }
             return task;
         } catch (Exception e) {
+            System.out.println("Warning: corrupted line skipped: " + line);
             return null; // corrupted line
         }
     }

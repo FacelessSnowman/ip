@@ -2,6 +2,8 @@ package ip.src.main.java;
 
 import java.util.ArrayList;
 import java.util.Scanner;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 
 public class Snowman {
     private static final String LINE = "____________________________________________________________";
@@ -76,7 +78,7 @@ public class Snowman {
                             || inputSegment[1].trim().isEmpty()) {
                         throw new SnowmanException("Error, the description of a task cannot be empty.");
                     }
-                    Task task = new Deadline(inputSegment[0], inputSegment[1]);
+                    Task task = new Deadline(inputSegment[0].trim(), inputSegment[1].trim());
                     enterList.add(task);
                     storage.save(enterList);
                     printTask(task, enterList.size());
@@ -89,7 +91,7 @@ public class Snowman {
                             || inputSegment[2].trim().isEmpty()) {
                         throw new SnowmanException("Error, the description of a task cannot be empty.");
                     }
-                    Task task = new Event(inputSegment[0], inputSegment[1], inputSegment[2]);
+                    Task task = new Event(inputSegment[0].trim(), inputSegment[1].trim(), inputSegment[2].trim());
                     enterList.add(task);
                     storage.save(enterList);
                     printTask(task, enterList.size());
@@ -111,6 +113,42 @@ public class Snowman {
                         System.out.println(LINE);
                     } catch (NumberFormatException | IndexOutOfBoundsException e) {
                         throw new SnowmanException("Might have missed out description/index of task.");
+                    }
+                } else if (input.startsWith("on ")) {
+                    String dateStr = input.substring(3).trim(); // everything after "on "
+                    if (dateStr.isEmpty()) {
+                        throw new SnowmanException("Please specify a date in yyyy-MM-dd format.");
+                    }
+                    try {
+                        LocalDate date = LocalDate.parse(dateStr);
+                        System.out.println(LINE);
+                        System.out.println("Tasks on " + date.format(DateTimeFormatter.ofPattern("MMM d yyyy")) + ":");
+
+                        boolean found = false;
+                        for (Task task : enterList) {
+                            if (task instanceof Deadline) {
+                                Deadline deadline = (Deadline) task;
+                                if (deadline.getTime().equals(date)) {
+                                    System.out.println("  " + deadline);
+                                    found = true;
+                                }
+                            } else if (task instanceof Event) {
+                                Event event = (Event) task;
+                                if (!date.isBefore(event.getStart()) && !date.isAfter(event.getEnd())) {
+                                    System.out.println("  " + event);
+                                    found = true;
+                                }
+                            }
+                        }
+
+                        if (!found) {
+                            System.out.println("No tasks found on this date.");
+                        }
+
+                        System.out.println(LINE);
+
+                    } catch (Exception e) {
+                        throw new SnowmanException("Invalid date format. Use yyyy-MM-dd.");
                     }
                 } else {
                     throw new SnowmanException("Wait...what are you typing? Might have missed out description/index of task.");
