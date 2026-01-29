@@ -1,19 +1,35 @@
 package ip.src.main.java;
 
-public class Event extends Task {
-    protected String start;
-    protected String end;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 
-    public Event(String description, String start, String end) {
+public class Event extends Task {
+    protected LocalDate start;
+    protected LocalDate end;
+
+    public Event(String description, String start, String end) throws SnowmanException {
         super(description);
-        this.start = start;
-        this.end = end;
+        try {
+            this.start = LocalDate.parse(start);
+            this.end = LocalDate.parse(end);
+        } catch (Exception e) {
+            throw new SnowmanException("Error: Please use the date format yyyy-MM-dd");
+        }
+    }
+
+    public LocalDate getStart() {
+        return start;
+    }
+
+    public LocalDate getEnd() {
+        return end;
     }
 
     @Override
     public String toString() {
-        return "[E]" + super.toString() +
-                " (from: " + start + " to: " + end + ")";
+        return "[E]" + super.toString()
+                + " (from: " + start.format(DateTimeFormatter.ofPattern("MMM d yyyy"))
+                + " to: " + end.format(DateTimeFormatter.ofPattern("MMM d yyyy")) + ")";
     }
 
     @Override
