@@ -1,4 +1,4 @@
-package ip.src.main.java.snowman;
+package snowman;
 
 public class SnowmanException extends Exception {
     public SnowmanException(String message) {

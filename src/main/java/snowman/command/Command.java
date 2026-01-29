@@ -1,9 +1,9 @@
-package ip.src.main.java.snowman.command;
+package snowman.command;
 
-import ip.src.main.java.snowman.SnowmanException;
-import ip.src.main.java.snowman.storage.Storage;
-import ip.src.main.java.snowman.task.TaskList;
-import ip.src.main.java.snowman.ui.Ui;
+import snowman.SnowmanException;
+import snowman.storage.Storage;
+import snowman.task.TaskList;
+import snowman.ui.Ui;
 
 /**
  * Abstract Command class

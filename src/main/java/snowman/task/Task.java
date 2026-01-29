@@ -1,4 +1,4 @@
-package ip.src.main.java.snowman.task;
+package snowman.task;
 
 public abstract class Task {
     protected String description;
@@ -24,6 +24,10 @@ public abstract class Task {
             return " ";
         }
     }
+
+    public boolean getStatus() {
+        return this.isDone;
+ }
 
     public abstract String toFileString();
 

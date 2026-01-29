@@ -1,6 +1,6 @@
-package ip.src.main.java.snowman.ui;
+package snowman.ui;
 
-import ip.src.main.java.snowman.task.Task;
+import snowman.task.Task;
 
 import java.util.Scanner;
 
