@@ -6,9 +6,20 @@ import snowman.task.TaskList;
 import snowman.task.Task;
 import snowman.ui.Ui;
 
+/**
+ * Represents a command to mark a task as done in the Snowman application.
+ * When executed, it marks the specified task as completed,
+ * updates the task list in storage, and displays a confirmation message.
+ */
 public class MarkCommand extends Command {
+    /** Full user input string for this command. */
     private final String input;
 
+    /**
+     * Constructs a MarkCommand with the specified user input.
+     *
+     * @param input Full command input from the user.
+     */
     public MarkCommand(String input) {
         this.input = input;
     }

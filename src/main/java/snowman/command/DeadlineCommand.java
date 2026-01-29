@@ -7,9 +7,21 @@ import snowman.task.Deadline;
 import snowman.task.Task;
 import snowman.ui.Ui;
 
+/**
+ * Represents a command to add a Deadline task in the Snowman application.
+ * When executed, it creates a Deadline with a description and due date,
+ * adds it to the task list, updates storage, and shows a confirmation message.
+ */
 public class DeadlineCommand extends Command {
+
+    /** Full user input string for this command. */
     private final String input;
 
+    /**
+     * Constructs a DeadlineCommand with the specified user input.
+     *
+     * @param input Full command input from the user.
+     */
     public DeadlineCommand(String input) {
         this.input = input;
     }

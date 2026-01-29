@@ -7,9 +7,19 @@ import snowman.task.Task;
 import snowman.task.Todo;
 import snowman.ui.Ui;
 
+/**
+ * Represents a command to add a Todo task in the Snowman application.
+ * When executed, it creates a Todo with the given description,
+ * adds it to the task list, updates the storage, and shows a confirmation message.
+ */
 public class TodoCommand extends Command {
     private final String input;
 
+    /**
+     * Constructs a TodoCommand with the specified user input.
+     *
+     * @param input Full command input from the user.
+     */
     public TodoCommand(String input) {
         this.input = input;
     }

@@ -6,9 +6,20 @@ import snowman.task.TaskList;
 import snowman.task.Task;
 import snowman.ui.Ui;
 
+/**
+ * Updates the list and storage after an unmark command.
+ *
+ * @param input command entered.
+ * @throws SnowmanException If task number input in command is out of range.
+ */
 public class UnmarkCommand extends Command {
     private final String input;
 
+    /**
+     * Constructs an UnmarkCommand with the specified user input.
+     *
+     * @param input Full command input from the user.
+     */
     public UnmarkCommand(String input) {
         this.input = input;
     }

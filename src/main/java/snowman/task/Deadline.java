@@ -5,9 +5,23 @@ import snowman.SnowmanException;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
+/**
+ * Represents a Deadline task in the Snowman application.
+ * A Deadline has a description and a due date.
+ * It can be marked as done or not done like other tasks.
+ */
 public class Deadline extends Task {
     protected LocalDate time;
 
+    /**
+     * Constructs a Deadline task with the specified description and due date.
+     * The date must be in the format yyyy-MM-dd, otherwise a {@link SnowmanException} is thrown.
+     * The task is initially marked as not done.
+     *
+     * @param description Description of the Deadline task.
+     * @param time Due date of the task in yyyy-MM-dd format.
+     * @throws SnowmanException If the date format is invalid.
+     */
     public Deadline(String description, String time) throws SnowmanException {
         super(description);
         try {
@@ -17,6 +31,11 @@ public class Deadline extends Task {
         }
     }
 
+    /**
+     * Returns the due date of the deadline task.
+     *
+     * @return Due date as a {@link LocalDate}.
+     */
     public LocalDate getTime() {
         return time;
     }

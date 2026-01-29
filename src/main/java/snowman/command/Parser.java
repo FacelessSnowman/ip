@@ -3,10 +3,18 @@ package snowman.command;
 import snowman.SnowmanException;
 
 /**
- * Parser: Converts user input into a Command object.
+ * Converts raw user input into the corresponding Command object in the Snowman application.
+ * Determines which type of command to create based on the input string.
  */
 public class Parser {
-    /** Parse the raw user input and return the corresponding Command */
+    /**
+     * Parses the raw user input and returns the corresponding Command object.
+     * Recognizes commands such as list, bye, mark, unmark, todo, deadline, event, and delete.
+     *
+     * @param input Raw command input from the user.
+     * @return Command object corresponding to the user input.
+     * @throws SnowmanException If the input does not match any known command.
+     */
     public static Command parse(String input) throws SnowmanException {
         input = input.trim();
 

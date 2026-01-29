@@ -11,14 +11,30 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
 
+/**
+ * Handles loading and saving tasks to a file for the Snowman application.
+ * Provides methods to read tasks from storage at startup and write tasks back to storage.
+ */
 public class Storage {
+    /** Path of the file used for storing tasks. */
     private final String filePath;
 
+    /**
+     * Constructs a Storage instance with the specified file path.
+     *
+     * @param filePath Path to the file used for saving and loading tasks.
+     */
     public Storage(String filePath) {
         this.filePath = filePath;
     }
 
-    /** Load tasks from file */
+    /**
+     * Loads tasks from the storage file.
+     * Creates a new file if it does not exist.
+     * Skips corrupted lines with a warning.
+     *
+     * @return List of tasks loaded from the file, or an empty list if the file is new or empty.
+     */
     public ArrayList<Task> load() {
         ArrayList<Task> tasks = new ArrayList<>();
 
@@ -47,7 +63,12 @@ public class Storage {
         return tasks;
     }
 
-    /** Save tasks to file */
+    /**
+     * Saves a list of tasks to the storage file.
+     * Each task is written in a format suitable for loading later.
+     *
+     * @param tasks List of tasks to save.
+     */
     public void save(ArrayList<Task> tasks) {
         try {
             FileWriter writer = new FileWriter(filePath);
@@ -60,6 +81,15 @@ public class Storage {
         }
     }
 
+    /**
+     * Parses a single line from the storage file into a Task object.
+     * Supports Todo, Deadline, and Event tasks.
+     * Marks tasks as done if indicated.
+     * Returns null if the line is corrupted or the type is unrecognized.
+     *
+     * @param line Line from the file representing a task.
+     * @return Parsed Task object, or null if parsing failed.
+     */
     private Task parseTask(String line) {
         String[] parts = line.split(" \\| ");
         try {
