@@ -11,6 +11,7 @@ import snowman.ui.Ui;
  * Provides a default implementation of {@link #isExit()} to indicate if the command exits the application.
  */
 public abstract class Command {
+
     /**
      * Executes this command using the given task list, UI, and storage.
      * Subclasses must implement this method to define their behavior.
