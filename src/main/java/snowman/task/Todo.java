@@ -1,4 +1,4 @@
-package ip.src.main.java;
+package ip.src.main.java.snowman.task;
 
 public class Todo extends Task {
     public Todo(String description) {
