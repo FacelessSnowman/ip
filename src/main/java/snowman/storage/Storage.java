@@ -1,9 +1,9 @@
-package ip.src.main.java.snowman.storage;
+package snowman.storage;
 
-import ip.src.main.java.snowman.task.Deadline;
-import ip.src.main.java.snowman.task.Event;
-import ip.src.main.java.snowman.task.Task;
-import ip.src.main.java.snowman.task.Todo;
+import snowman.task.Deadline;
+import snowman.task.Event;
+import snowman.task.Task;
+import snowman.task.Todo;
 
 import java.util.Scanner;
 import java.io.File;

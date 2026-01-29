@@ -1,10 +1,10 @@
-package ip.src.main.java.snowman;
+package snowman;
 
-import ip.src.main.java.snowman.command.Command;
-import ip.src.main.java.snowman.command.Parser;
-import ip.src.main.java.snowman.storage.Storage;
-import ip.src.main.java.snowman.task.TaskList;
-import ip.src.main.java.snowman.ui.Ui;
+import snowman.command.Command;
+import snowman.command.Parser;
+import snowman.storage.Storage;
+import snowman.task.TaskList;
+import snowman.ui.Ui;
 
 public class Snowman {
     private final Storage storage;

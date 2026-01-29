@@ -1,6 +1,6 @@
-package ip.src.main.java.snowman.command;
+package snowman.command;
 
-import ip.src.main.java.snowman.SnowmanException;
+import snowman.SnowmanException;
 
 /**
  * Parser: Converts user input into a Command object.

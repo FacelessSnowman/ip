@@ -1,7 +1,6 @@
-package ip.src.main.java.snowman.task;
+package snowman.task;
 
-import ip.src.main.java.snowman.SnowmanException;
-
+import snowman.SnowmanException;
 import java.util.ArrayList;
 
 /**
