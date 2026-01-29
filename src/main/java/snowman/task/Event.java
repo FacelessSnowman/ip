@@ -5,10 +5,25 @@ import snowman.SnowmanException;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
+/**
+ * Represents an Event task in the Snowman application.
+ * An Event has a description, a start date, and an end date.
+ * It can be marked as done or not done like other tasks.
+ */
 public class Event extends Task {
     protected LocalDate start;
     protected LocalDate end;
 
+    /**
+     * Constructs an Event task with the specified description, start date, and end date.
+     * The dates must be in the format yyyy-MM-dd, otherwise a {@link SnowmanException} is thrown.
+     * The task is initially marked as not done.
+     *
+     * @param description Description of the Event task.
+     * @param start Start date of the event in yyyy-MM-dd format.
+     * @param end End date of the event in yyyy-MM-dd format.
+     * @throws SnowmanException If the date format is invalid.
+     */
     public Event(String description, String start, String end) throws SnowmanException {
         super(description);
         try {
@@ -19,10 +34,20 @@ public class Event extends Task {
         }
     }
 
+    /**
+     * Returns the start date of the event.
+     *
+     * @return Start date as a {@link LocalDate}.
+     */
     public LocalDate getStart() {
         return start;
     }
 
+    /**
+     * Returns the end date of the event.
+     *
+     * @return End date as a {@link LocalDate}.
+     */
     public LocalDate getEnd() {
         return end;
     }

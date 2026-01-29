@@ -11,22 +11,30 @@ import java.util.ArrayList;
 public class TaskList {
     private final ArrayList<Task> tasks;
 
-    /** Default constructor initializes empty task list */
+    /**
+     * Default constructor initializes empty task list
+     */
     public TaskList() {
         tasks = new ArrayList<>();
     }
 
-    /** Overloaded constructor with initial tasks in storage */
+    /**
+     * Overloaded constructor with initial tasks in storage
+     */
     public TaskList(ArrayList<Task> storedTasks) {
         tasks = storedTasks;
     }
 
-    /** Add a task to the list */
+    /**
+     * Add a task to the list
+     */
     public void add(Task task) {
         tasks.add(task);
     }
 
-    /** Remove a task by 0-based index */
+    /**
+     * Remove a task by 0-based index
+     */
     public Task remove(int index) throws SnowmanException {
         if (index < 0 || index >= tasks.size()) {
             throw new SnowmanException("Invalid task number to delete.");
@@ -34,7 +42,9 @@ public class TaskList {
         return tasks.remove(index);
     }
 
-    /** Mark a task as done */
+    /**
+     * Mark a task as done
+     */
     public Task mark(int index) throws SnowmanException {
         if (index < 0 || index >= tasks.size()) {
             throw new SnowmanException("Invalid task number to mark.");
@@ -44,7 +54,9 @@ public class TaskList {
         return task;
     }
 
-    /** Unmark a task */
+    /**
+     * Unmark a task
+     */
     public Task unmark(int index) throws SnowmanException {
         if (index < 0 || index >= tasks.size()) {
             throw new SnowmanException("Invalid task number to unmark.");
@@ -54,7 +66,9 @@ public class TaskList {
         return task;
     }
 
-    /** Get a task at a specific index */
+    /**
+     * Get a task at a specific index
+     */
     public Task get(int index) throws SnowmanException {
         if (index < 0 || index >= tasks.size()) {
             throw new SnowmanException("Invalid task number.");
@@ -62,17 +76,23 @@ public class TaskList {
         return tasks.get(index);
     }
 
-    /** Return the number of tasks */
+    /**
+     * Return the number of tasks
+     */
     public int size() {
         return tasks.size();
     }
 
-    /** Return all tasks (for listing) */
+    /**
+     * Return all tasks (for listing)
+     */
     public ArrayList<Task> getTasks() {
         return tasks;
     }
 
-    /** Return a string of all tasks formatted for display */
+    /**
+     * Return a string of all tasks formatted for display
+     */
     public String listTasks() {
         StringBuilder sb = new StringBuilder("Here are the tasks in your list:\n");
         for (int i = 0; i < tasks.size(); i++) {

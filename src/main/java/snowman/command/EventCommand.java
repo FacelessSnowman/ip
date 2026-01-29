@@ -7,9 +7,21 @@ import snowman.task.Event;
 import snowman.task.Task;
 import snowman.ui.Ui;
 
+/**
+ * Represents a command to add an Event task in the Snowman application.
+ * When executed, it creates an Event with a description, start date, and end date,
+ * adds it to the task list, updates storage, and shows a confirmation message.
+ */
 public class EventCommand extends Command {
+
+    /** Full user input string for this command. */
     private final String input;
 
+    /**
+     * Constructs an EventCommand with the specified user input.
+     *
+     * @param input Full command input from the user.
+     */
     public EventCommand(String input) {
         this.input = input;
     }

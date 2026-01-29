@@ -6,9 +6,21 @@ import snowman.task.TaskList;
 import snowman.task.Task;
 import snowman.ui.Ui;
 
+/**
+ * Represents a command to delete a task in the Snowman application.
+ * When executed, it removes the specified task from the task list,
+ * updates storage, and displays a confirmation message.
+ */
 public class DeleteCommand extends Command {
+
+    /** Full user input string for this command. */
     private final String input;
 
+    /**
+     * Constructs a DeleteCommand with the specified user input.
+     *
+     * @param input Full command input from the user.
+     */
     public DeleteCommand(String input) {
         this.input = input;
     }
