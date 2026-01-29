@@ -13,7 +13,7 @@ public class Event extends Task {
             this.start = LocalDate.parse(start);
             this.end = LocalDate.parse(end);
         } catch (Exception e) {
-            throw new SnowmanException("Error: Please use the date format yyyy-MM-dd");
+            throw new SnowmanException("Please use the date format yyyy-MM-dd");
         }
     }
 

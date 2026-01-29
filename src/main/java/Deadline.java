@@ -11,7 +11,7 @@ public class Deadline extends Task {
         try {
             this.time = LocalDate.parse(time); // expects yyyy-MM-dd
         } catch (Exception e) {
-            throw new SnowmanException("Error: Please use the date format yyyy-MM-dd");
+            throw new SnowmanException("Please use the date format yyyy-MM-dd");
         }
     }
 
