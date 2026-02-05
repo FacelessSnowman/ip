@@ -35,7 +35,7 @@ public class Parser {
         } else if (input.startsWith("delete")) {
             return new DeleteCommand(input);
         } else if (input.startsWith("find")) {
-                return new FindCommand(input);
+            return new FindCommand(input);
         } else {
             throw new SnowmanException("Wait...what command are you typing?");
         }

@@ -2,8 +2,8 @@ package snowman.command;
 
 import snowman.SnowmanException;
 import snowman.storage.Storage;
-import snowman.task.TaskList;
 import snowman.task.Task;
+import snowman.task.TaskList;
 import snowman.ui.Ui;
 
 /**
@@ -35,8 +35,17 @@ public class DeleteCommand extends Command {
         try {
             int index = Integer.parseInt(arg) - 1;
             Task task = tasks.remove(index);
-            ui.showDeletedTask(task, tasks.size());
             storage.save(tasks.getTasks());
+            // Build message for both console and GUI
+            String message = "Noted. I've removed this task:\n"
+                    + "  " + task + "\n"
+                    + "Now you have " + tasks.size() + " tasks in the list.";
+
+            // Console output
+            ui.showMessage(message);
+
+            // GUI output
+            feedback = message;
         } catch (NumberFormatException | IndexOutOfBoundsException e) {
             throw new SnowmanException("Error: Invalid task number to delete.");
         }

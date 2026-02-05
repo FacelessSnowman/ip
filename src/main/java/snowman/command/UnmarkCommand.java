@@ -2,14 +2,13 @@ package snowman.command;
 
 import snowman.SnowmanException;
 import snowman.storage.Storage;
-import snowman.task.TaskList;
 import snowman.task.Task;
+import snowman.task.TaskList;
 import snowman.ui.Ui;
 
 /**
  * Updates the list and storage after an unmark command.
  *
- * @param input command entered.
  * @throws SnowmanException If task number input in command is out of range.
  */
 public class UnmarkCommand extends Command {
@@ -32,10 +31,18 @@ public class UnmarkCommand extends Command {
             task.unmark();
             storage.save(tasks.getTasks());
 
-            System.out.println("OK, I've marked this task as not done yet:");
-            System.out.println("  " + task);
-        } catch (IndexOutOfBoundsException  e) {
+            String message = "OK, I've marked this task as not done yet:\n"
+                    + "  " + task;
+
+            // For console mode
+            ui.showMessage(message);
+
+            // For GUI mode
+            feedback = message;
+        } catch (IndexOutOfBoundsException e) {
             throw new SnowmanException("Task number out of range.");
+        } catch (NumberFormatException e) {
+            throw new SnowmanException("Please provide a valid task number.");
         }
     }
 }
