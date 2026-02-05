@@ -1,0 +1,3 @@
+T | 0 | book
+T | 0 | book
+T | 1 | Borrow book /by 2pm
