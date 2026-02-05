@@ -2,8 +2,8 @@ package snowman.command;
 
 import snowman.SnowmanException;
 import snowman.storage.Storage;
-import snowman.task.TaskList;
 import snowman.task.Task;
+import snowman.task.TaskList;
 import snowman.task.Todo;
 import snowman.ui.Ui;
 
@@ -35,5 +35,10 @@ public class TodoCommand extends Command {
         tasks.add(task);
         ui.showAddedTask(task, tasks.size());
         storage.save(tasks.getTasks());
+
+        // prepare GUI feedback
+        feedback = "Got it. I've added this task:\n"
+                + "  " + task + "\n"
+                + "Now you have " + tasks.size() + " tasks in the list.";
     }
 }

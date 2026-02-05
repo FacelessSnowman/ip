@@ -11,6 +11,7 @@ import snowman.ui.Ui;
  * Provides a default implementation of {@link #isExit()} to indicate if the command exits the application.
  */
 public abstract class Command {
+    protected String feedback = "";
 
     /**
      * Executes this command using the given task list, UI, and storage.
@@ -31,5 +32,9 @@ public abstract class Command {
      */
     public boolean isExit() {
         return false;
+    }
+
+    public String getString() {
+        return feedback;
     }
 }

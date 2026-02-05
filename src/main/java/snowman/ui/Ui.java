@@ -1,8 +1,8 @@
 package snowman.ui;
 
-import snowman.task.Task;
-
 import java.util.Scanner;
+
+import snowman.task.Task;
 
 /**
  * Represents the user interface of the Snowman application.
@@ -13,7 +13,7 @@ public class Ui {
     private final Scanner scanner;
 
     /**
-     * Constructs a Ui instance.
+     * Constructs an Ui instance.
      * Initializes the scanner for reading user input.
      */
     public Ui() {
@@ -55,14 +55,14 @@ public class Ui {
         System.out.println("Now you have " + size + " tasks in the list.");
     }
 
-    /**
-     * Show the message of the command that deleted a task
-     */
-    public void showDeletedTask(Task task, int size) {
-        System.out.println("Noted. I've removed this task:");
-        System.out.println("  " + task);
-        System.out.println("Now you have " + size + " tasks in the list.");
-    }
+    //    /**
+    //     * Show the message of the command that deleted a task
+    //     */
+    //    public void showDeletedTask(Task task, int size) {
+    //        System.out.println("Noted. I've removed this task:");
+    //        System.out.println("  " + task);
+    //        System.out.println("Now you have " + size + " tasks in the list.");
+    //    }
 
     /**
      * Show an error message

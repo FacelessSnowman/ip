@@ -16,6 +16,8 @@ public class Snowman {
     private final TaskList tasks;
     private final Ui ui;
 
+    private String commandType;
+
     /**
      * Constructs a Snowman application instance.
      * Initializes the user interface, storage, and task list.
@@ -59,5 +61,23 @@ public class Snowman {
      */
     public static void main(String[] args) {
         new Snowman("data/storage.txt").run();
+    }
+
+    /**
+     * Generates a response for the user's chat message.
+     */
+    public String getResponse(String input) {
+        try {
+            Command c = Parser.parse(input);
+            c.execute(tasks, ui, storage);
+            commandType = c.getClass().getSimpleName();
+            return c.getString();
+        } catch (SnowmanException e) {
+            return "Error: " + e.getMessage();
+        }
+    }
+
+    public String getCommandType() {
+        return commandType;
     }
 }

@@ -2,9 +2,9 @@ package snowman.command;
 
 import snowman.SnowmanException;
 import snowman.storage.Storage;
-import snowman.task.TaskList;
 import snowman.task.Event;
 import snowman.task.Task;
+import snowman.task.TaskList;
 import snowman.ui.Ui;
 
 /**
@@ -37,7 +37,15 @@ public class EventCommand extends Command {
         }
         Task task = new Event(inputSegment[0].trim(), inputSegment[1].trim(), inputSegment[2].trim());
         tasks.add(task);
-        ui.showAddedTask(task, tasks.size());
         storage.save(tasks.getTasks());
+        String message = "Got it. I've added this event:\n"
+                + "  " + task + "\n"
+                + "Now you have " + tasks.size() + " tasks in the list.";
+
+        // Console mode
+        ui.showMessage(message);
+
+        // GUI mode
+        feedback = message;
     }
 }

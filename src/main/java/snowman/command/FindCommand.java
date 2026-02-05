@@ -1,12 +1,12 @@
 package snowman.command;
 
+import java.util.ArrayList;
+
 import snowman.SnowmanException;
 import snowman.storage.Storage;
 import snowman.task.Task;
 import snowman.task.TaskList;
 import snowman.ui.Ui;
-
-import java.util.ArrayList;
 
 /**
  * Represents a command to find tasks containing a specific keyword
@@ -39,15 +39,19 @@ public class FindCommand extends Command {
                 containKeywords.add(task);
             }
         }
-
+        String message;
         if (containKeywords.isEmpty()) {
-            ui.showMessage("No matching tasks found.");
+            message = "No matching tasks found.";
         } else {
             StringBuilder sb = new StringBuilder("Here are the matching tasks in your list:\n");
             for (int i = 0; i < containKeywords.size(); i++) {
                 sb.append((i + 1)).append(".").append(containKeywords.get(i)).append("\n");
             }
-            ui.showMessage(sb.toString().trim());
+            message = sb.toString().trim();
+            // For console mode
+            ui.showMessage(message);
+            // For GUI mode
+            feedback = message;
         }
     }
 }
