@@ -8,7 +8,6 @@ package snowman.task;
 public abstract class Task {
     protected String description;
     protected boolean isDone;
-
     /**
      * Constructs a Task with the specified description.
      * The task is initially marked as not done.
@@ -19,21 +18,18 @@ public abstract class Task {
         this.description = description;
         this.isDone = false;
     }
-
     /**
      * Marks the task as completed.
      */
     public void markAsDone() {
         this.isDone = true;
     }
-
     /**
      * Marks the task as not completed.
      */
     public void unmark() {
         this.isDone = false;
     }
-
     /**
      * Returns the status icon representing the completion state of the task.
      *
@@ -46,7 +42,6 @@ public abstract class Task {
             return " ";
         }
     }
-
     /**
      * Returns the completion status of the task.
      *
@@ -54,8 +49,7 @@ public abstract class Task {
      */
     public boolean getStatus() {
         return this.isDone;
- }
-
+    }
     /**
      * Returns a string representation of the task suitable for saving to a file.
      * Specific task types must implement this method.
@@ -63,7 +57,6 @@ public abstract class Task {
      * @return String representing the task for file storage.
      */
     public abstract String toFileString();
-
     @Override
     public String toString() {
         return "[" + getStatusIcon() + "] " + description;

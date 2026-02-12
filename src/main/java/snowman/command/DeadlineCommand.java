@@ -28,19 +28,59 @@ public class DeadlineCommand extends Command {
 
     @Override
     public void execute(TaskList tasks, Ui ui, Storage storage) throws SnowmanException {
-        String[] inputSegment = input.length() > 8 ? input.substring(9).split(" /by ", 2) : new String[0];
-        if (inputSegment.length < 2 || inputSegment[0].trim().isEmpty() || inputSegment[1].trim().isEmpty()) {
-            throw new SnowmanException("The description or /by of a deadline cannot be empty.");
-        }
 
-        Task task = new Deadline(inputSegment[0], inputSegment[1]);
+        // Parse the input
+        String[] parts = parseDeadlineInput();
+        // Validate the input
+        validate(parts);
+
+        // Create the Deadline task
+        Task task = new Deadline(parts[0].trim(), parts[1].trim());
+
+        // Add task to the list and save
         tasks.add(task);
-        ui.showAddedTask(task, tasks.size());
         storage.save(tasks.getTasks());
 
-        // prepare GUI feedback
-        feedback = "Got it. I've added this task:\n"
-                + "  " + task + "\n"
-                + "Now you have " + tasks.size() + " tasks in the list.";
+        // Show feedback in console
+        ui.showAddedTask(task, tasks.size());
+
+        // Prepare GUI feedback
+        feedback = String.format(
+                "Got it. I've added this task:%n  %s%nNow you have %d tasks in the list.",
+                task,
+                tasks.size()
+        );
+    }
+
+    /**
+     * Parses the user input for the deadline command into description and /by date.
+     *
+     * @return Array of 2 strings: [description, by], or empty array if invalid
+     */
+    private String[] parseDeadlineInput() {
+        final String commandPrefix = "deadline "; // 9 characters
+        String[] segments;
+
+        if (input.length() <= commandPrefix.length()) {
+            segments = new String[0];
+        } else {
+            segments = input.substring(commandPrefix.length()).split(" /by ", 2);
+        }
+
+        return segments;
+    }
+
+    /**
+     * Validates the parsed input segments.
+     *
+     * @param parts Array of strings from parseDeadlineInput()
+     * @throws SnowmanException if any segment is missing or empty
+     */
+    private void validate(String[] parts) throws SnowmanException {
+        if (parts.length < 2
+                || parts[0].trim().isEmpty()
+                || parts[1].trim().isEmpty()) {
+            throw new SnowmanException("The description or /by of a deadline cannot be empty.");
+        }
     }
 }

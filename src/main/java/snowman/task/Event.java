@@ -1,9 +1,9 @@
 package snowman.task;
 
-import snowman.SnowmanException;
-
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+
+import snowman.SnowmanException;
 
 /**
  * Represents an Event task in the Snowman application.
@@ -32,24 +32,6 @@ public class Event extends Task {
         } catch (Exception e) {
             throw new SnowmanException("Please use the date format yyyy-MM-dd");
         }
-    }
-
-    /**
-     * Returns the start date of the event.
-     *
-     * @return Start date as a {@link LocalDate}.
-     */
-    public LocalDate getStart() {
-        return start;
-    }
-
-    /**
-     * Returns the end date of the event.
-     *
-     * @return End date as a {@link LocalDate}.
-     */
-    public LocalDate getEnd() {
-        return end;
     }
 
     @Override
