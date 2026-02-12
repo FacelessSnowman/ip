@@ -18,6 +18,8 @@ public class Parser {
     public static Command parse(String input) throws SnowmanException {
         input = input.trim();
 
+        assert input != null : "Input string should never be null";
+        assert !input.isEmpty() : "Input string should not be empty after trimming";
         if (input.equals("list")) {
             return new ListCommand();
         } else if (input.equals("bye")) {

@@ -51,6 +51,7 @@ public class Storage {
             while (scanner.hasNextLine()) {
                 String line = scanner.nextLine();
                 Task task = parseTask(line);
+                assert task == null || task instanceof Task : "Parsed object must be a Task or null";
                 if (task != null) {
                     tasks.add(task);
                 }
