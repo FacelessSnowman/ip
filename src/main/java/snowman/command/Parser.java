@@ -36,8 +36,10 @@ public class Parser {
             return new DeleteCommand(input);
         } else if (input.startsWith("find")) {
             return new FindCommand(input);
+        } else if (input.startsWith("help")) {
+            return new HelpCommand();
         } else {
-            throw new SnowmanException("Wait...what command are you typing?");
+            return new UnknownCommand(input);
         }
     }
 }

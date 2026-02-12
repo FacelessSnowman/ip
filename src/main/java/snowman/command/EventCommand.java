@@ -28,24 +28,58 @@ public class EventCommand extends Command {
 
     @Override
     public void execute(TaskList tasks, Ui ui, Storage storage) throws SnowmanException {
-        String[] inputSegment = input.length() > 5 ? input.substring(6).split(" /from | /to ", 3) : new String[0];
-        if (inputSegment.length < 3
-                || inputSegment[0].trim().isEmpty()
-                || inputSegment[1].trim().isEmpty()
-                || inputSegment[2].trim().isEmpty()) {
-            throw new SnowmanException("The description, /from, /to of an event cannot be empty.");
-        }
-        Task task = new Event(inputSegment[0].trim(), inputSegment[1].trim(), inputSegment[2].trim());
+
+        // Parse the input into description, from, and to
+        String[] parts = parseEventInput();
+        // Validate the parts
+        validate(parts);
+
+        // Create the Event task
+        Task task = new Event(parts[0].trim(), parts[1].trim(), parts[2].trim());
+
+        // Add task to list and save
         tasks.add(task);
         storage.save(tasks.getTasks());
-        String message = "Got it. I've added this event:\n"
-                + "  " + task + "\n"
-                + "Now you have " + tasks.size() + " tasks in the list.";
 
-        // Console mode
+        // Create feedback message
+        String message = String.format(
+                "Got it. I've added this event:%n  %s%nNow you have %d tasks in the list.",
+                task,
+                tasks.size()
+        );
+
+        // Show in console
         ui.showMessage(message);
-
-        // GUI mode
+        // Show in GUI
         feedback = message;
+    }
+
+    /**
+     * Parses the user input for the event command into description, from, and to segments.
+     *
+     * @return Array of 3 strings: [description, from, to], or empty array if invalid
+     */
+    private String[] parseEventInput() {
+        final String commandPrefix = "event "; // 6 characters
+        if (input.length() <= commandPrefix.length()) {
+            return new String[0];
+        }
+        // Split by /from and /to
+        return input.substring(commandPrefix.length()).split(" /from | /to ", 3);
+    }
+
+    /**
+     * Validates the parsed input segments.
+     *
+     * @param parts Array of strings from parseEventInput()
+     * @throws SnowmanException if any segment is missing or empty
+     */
+    private void validate(String[] parts) throws SnowmanException {
+        if (parts.length < 3
+                || parts[0].trim().isEmpty()
+                || parts[1].trim().isEmpty()
+                || parts[2].trim().isEmpty()) {
+            throw new SnowmanException("The description, /from, /to of an event cannot be empty.");
+        }
     }
 }

@@ -1,15 +1,15 @@
 package snowman.storage;
 
-import snowman.task.Deadline;
-import snowman.task.Event;
-import snowman.task.Task;
-import snowman.task.Todo;
-
-import java.util.Scanner;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Scanner;
+
+import snowman.task.Deadline;
+import snowman.task.Event;
+import snowman.task.Task;
+import snowman.task.Todo;
 
 /**
  * Handles loading and saving tasks to a file for the Snowman application.
@@ -40,7 +40,10 @@ public class Storage {
 
         try {
             File file = new File(filePath);
-            file.getParentFile().mkdirs();
+            File parent = file.getParentFile();
+            if (parent != null) {
+                parent.mkdirs(); // create folder if not exist
+            }
 
             if (!file.exists()) {
                 file.createNewFile(); // create file if not exist

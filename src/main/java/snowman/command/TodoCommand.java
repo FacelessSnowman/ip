@@ -26,7 +26,14 @@ public class TodoCommand extends Command {
 
     @Override
     public void execute(TaskList tasks, Ui ui, Storage storage) throws SnowmanException {
-        String inputSegment = input.length() > 4 ? input.substring(5).trim() : "";
+        String inputSegment;
+
+        if (input.length() > 4) {
+            inputSegment = input.substring(5).trim();
+        } else {
+            inputSegment = "";
+        }
+
         if (inputSegment.isEmpty()) {
             throw new SnowmanException("The description of a todo cannot be empty.");
         }
@@ -40,5 +47,8 @@ public class TodoCommand extends Command {
         feedback = "Got it. I've added this task:\n"
                 + "  " + task + "\n"
                 + "Now you have " + tasks.size() + " tasks in the list.";
+
+        // Console mode
+        ui.showMessage(feedback);
     }
 }

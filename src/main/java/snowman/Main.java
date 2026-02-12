@@ -12,7 +12,7 @@ import javafx.stage.Stage;
  * A GUI for Snowman using FXML.
  */
 public class Main extends Application {
-    private Snowman snowman = new Snowman("data/storage.txt");
+    private final Snowman snowman = new Snowman("data/storage.txt");
 
     @Override
     public void start(Stage stage) {

@@ -1,9 +1,9 @@
 package snowman.task;
 
-import snowman.SnowmanException;
-
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+
+import snowman.SnowmanException;
 
 /**
  * Represents a Deadline task in the Snowman application.

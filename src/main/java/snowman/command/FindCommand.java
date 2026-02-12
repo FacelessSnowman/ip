@@ -48,10 +48,10 @@ public class FindCommand extends Command {
                 sb.append((i + 1)).append(".").append(containKeywords.get(i)).append("\n");
             }
             message = sb.toString().trim();
-            // For console mode
-            ui.showMessage(message);
-            // For GUI mode
-            feedback = message;
         }
+        // For console mode
+        ui.showMessage(message);
+        // For GUI mode
+        feedback = message;
     }
 }

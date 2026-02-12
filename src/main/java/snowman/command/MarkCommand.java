@@ -12,7 +12,6 @@ import snowman.ui.Ui;
  * updates the task list in storage, and displays a confirmation message.
  */
 public class MarkCommand extends Command {
-    /** Full user input string for this command. */
     private final String input;
 
     /**
@@ -28,23 +27,20 @@ public class MarkCommand extends Command {
     public void execute(TaskList tasks, Ui ui, Storage storage) throws SnowmanException {
         try {
             int index = Integer.parseInt(input.substring(5)) - 1;
-
             Task task = tasks.get(index);
             task.markAsDone();
             storage.save(tasks.getTasks());
 
-            String message = "Nice! I've marked this task as done:\n"
-                    + "  " + task;
+            String message = "Nice! I've marked this task as done:\n  " + task;
 
             // For console mode
             ui.showMessage(message);
-
             // For GUI mode
             feedback = message;
         } catch (IndexOutOfBoundsException e) {
             throw new SnowmanException("Task number out of range.");
         } catch (NumberFormatException e) {
-            throw new SnowmanException("Please provide a valid task number.");
+            throw new SnowmanException("Please provide a number.");
         }
     }
 }

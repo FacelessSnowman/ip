@@ -1,7 +1,8 @@
 package snowman.task;
 
-import snowman.SnowmanException;
 import java.util.ArrayList;
+
+import snowman.SnowmanException;
 
 /**
  * TaskList stores and manages the list of tasks.
@@ -43,30 +44,6 @@ public class TaskList {
     }
 
     /**
-     * Mark a task as done
-     */
-    public Task mark(int index) throws SnowmanException {
-        if (index < 0 || index >= tasks.size()) {
-            throw new SnowmanException("Invalid task number to mark.");
-        }
-        Task task = tasks.get(index);
-        task.markAsDone();
-        return task;
-    }
-
-    /**
-     * Unmark a task
-     */
-    public Task unmark(int index) throws SnowmanException {
-        if (index < 0 || index >= tasks.size()) {
-            throw new SnowmanException("Invalid task number to unmark.");
-        }
-        Task task = tasks.get(index);
-        task.unmark();
-        return task;
-    }
-
-    /**
      * Get a task at a specific index
      */
     public Task get(int index) throws SnowmanException {
@@ -88,16 +65,5 @@ public class TaskList {
      */
     public ArrayList<Task> getTasks() {
         return tasks;
-    }
-
-    /**
-     * Return a string of all tasks formatted for display
-     */
-    public String listTasks() {
-        StringBuilder sb = new StringBuilder("Here are the tasks in your list:\n");
-        for (int i = 0; i < tasks.size(); i++) {
-            sb.append((i + 1)).append(". ").append(tasks.get(i)).append("\n");
-        }
-        return sb.toString();
     }
 }

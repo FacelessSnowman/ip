@@ -24,12 +24,9 @@ public class Ui {
      * Show welcome message
      */
     public void showWelcome() {
-        System.out.println("""
-                ____________________________________________________________
-                Hello! I'm snowman
-                What can I do for you?
-                ____________________________________________________________
-                """);
+        this.showLine();
+        System.out.println("Hello! I'm snowman\nWhat can I do for you?");
+        this.showLine();
     }
 
     /**
@@ -55,15 +52,6 @@ public class Ui {
         System.out.println("Now you have " + size + " tasks in the list.");
     }
 
-    //    /**
-    //     * Show the message of the command that deleted a task
-    //     */
-    //    public void showDeletedTask(Task task, int size) {
-    //        System.out.println("Noted. I've removed this task:");
-    //        System.out.println("  " + task);
-    //        System.out.println("Now you have " + size + " tasks in the list.");
-    //    }
-
     /**
      * Show an error message
      */
@@ -75,13 +63,6 @@ public class Ui {
      * Show a generic message
      */
     public void showMessage(String message) {
-        System.out.println(message);
-    }
-
-    /**
-     * Show the list stored
-     */
-    public void showList(String message) {
         System.out.println(message);
     }
 }

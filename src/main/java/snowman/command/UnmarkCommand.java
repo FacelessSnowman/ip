@@ -7,9 +7,9 @@ import snowman.task.TaskList;
 import snowman.ui.Ui;
 
 /**
- * Updates the list and storage after an unmark command.
- *
- * @throws SnowmanException If task number input in command is out of range.
+ * Represents a command to unmark a task as undone in the Snowman application.
+ * When executed, it unmarks the specified task as uncompleted,
+ * updates the task list in storage, and displays a confirmation message.
  */
 public class UnmarkCommand extends Command {
     private final String input;
@@ -31,18 +31,16 @@ public class UnmarkCommand extends Command {
             task.unmark();
             storage.save(tasks.getTasks());
 
-            String message = "OK, I've marked this task as not done yet:\n"
-                    + "  " + task;
+            String message = "OK, I've marked this task as not done yet:\n  " + task;
 
             // For console mode
             ui.showMessage(message);
-
             // For GUI mode
             feedback = message;
         } catch (IndexOutOfBoundsException e) {
             throw new SnowmanException("Task number out of range.");
         } catch (NumberFormatException e) {
-            throw new SnowmanException("Please provide a valid task number.");
+            throw new SnowmanException("Please provide a number.");
         }
     }
 }
