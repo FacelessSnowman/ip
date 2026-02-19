@@ -7,9 +7,9 @@ import snowman.task.TaskList;
 import snowman.ui.Ui;
 
 /**
- * Represents a command to unmark a task as undone in the Snowman application.
- * When executed, it unmarks the specified task as uncompleted,
- * updates the task list in storage, and displays a confirmation message.
+ * Represents a command that unmarks a task as not done in the Snowman application.
+ * Executes by setting the specified task as uncompleted, updating storage,
+ * and preparing user feedback.
  */
 public class UnmarkCommand extends Command {
     private final String input;
@@ -23,6 +23,16 @@ public class UnmarkCommand extends Command {
         this.input = input;
     }
 
+    /**
+     * Executes the unmark command by parsing the task number from user input,
+     * unmarking the corresponding task, saving the updated task list to storage,
+     * and preparing feedback for console and GUI.
+     *
+     * @param tasks Task list containing the task to unmark.
+     * @param ui User interface used to display feedback.
+     * @param storage Storage used to persist tasks.
+     * @throws SnowmanException If the task number is missing, invalid, or out of range.
+     */
     @Override
     public void execute(TaskList tasks, Ui ui, Storage storage) throws SnowmanException {
         try {
@@ -38,9 +48,9 @@ public class UnmarkCommand extends Command {
             // For GUI mode
             feedback = message;
         } catch (IndexOutOfBoundsException e) {
-            throw new SnowmanException("Task number out of range.");
+            throw new SnowmanException("Please provide the number of the task to be unmarked.");
         } catch (NumberFormatException e) {
-            throw new SnowmanException("Please provide a number.");
+            throw new SnowmanException("Please provide the number as an integer.");
         }
     }
 }

@@ -26,12 +26,19 @@ public class DeadlineCommand extends Command {
         this.input = input;
     }
 
+    /**
+     * Executes the deadline command by parsing the input, creating a Deadline task,
+     * adding it to the task list, saving the updated list to storage, and preparing feedback.
+     *
+     * @param tasks Task list to which the new task is added.
+     * @param ui User interface used to display feedback.
+     * @param storage Storage used to persist tasks.
+     * @throws SnowmanException If the input format is invalid.
+     */
     @Override
     public void execute(TaskList tasks, Ui ui, Storage storage) throws SnowmanException {
-
-        // Parse the input
+        // Parse and validate the input
         String[] parts = parseDeadlineInput();
-        // Validate the input
         validate(parts);
 
         // Create the Deadline task
@@ -53,9 +60,10 @@ public class DeadlineCommand extends Command {
     }
 
     /**
-     * Parses the user input for the deadline command into description and /by date.
+     * Parses the user input into a task description and due date.
      *
-     * @return Array of 2 strings: [description, by], or empty array if invalid
+     * @return Array containing the description and due date,
+     *         or an empty array if the input format is invalid.
      */
     private String[] parseDeadlineInput() {
         final String commandPrefix = "deadline "; // 9 characters
@@ -71,10 +79,10 @@ public class DeadlineCommand extends Command {
     }
 
     /**
-     * Validates the parsed input segments.
+     * Validates the parsed input segments to ensure both description and due date are present.
      *
-     * @param parts Array of strings from parseDeadlineInput()
-     * @throws SnowmanException if any segment is missing or empty
+     * @param parts Parsed input segments.
+     * @throws SnowmanException If the description or due date is missing or empty.
      */
     private void validate(String[] parts) throws SnowmanException {
         if (parts.length < 2

@@ -7,9 +7,9 @@ import snowman.task.TaskList;
 import snowman.ui.Ui;
 
 /**
- * Represents a command to delete a task in the Snowman application.
- * When executed, it removes the specified task from the task list,
- * updates storage, and displays a confirmation message.
+ * Represents a command that deletes a task from the Snowman application.
+ * Executes the removal of a specified task, updates storage,
+ * and prepares user feedback.
  */
 public class DeleteCommand extends Command {
 
@@ -25,11 +25,20 @@ public class DeleteCommand extends Command {
         this.input = input;
     }
 
+    /**
+     * Executes the delete command by removing the specified task from the task list,
+     * saving the updated list to storage, and preparing feedback.
+     *
+     * @param tasks Task list from which the task is removed.
+     * @param ui User interface used to display feedback.
+     * @param storage Storage used to persist tasks.
+     * @throws SnowmanException If the task number is invalid or missing.
+     */
     @Override
     public void execute(TaskList tasks, Ui ui, Storage storage) throws SnowmanException {
         String arg = input.length() > 6 ? input.substring(7).trim() : "";
         if (arg.isEmpty()) {
-            throw new SnowmanException("Error: Task number to delete cannot be empty.");
+            throw new SnowmanException("Task number to delete cannot be empty.");
         }
 
         try {

@@ -8,9 +8,9 @@ import snowman.task.TaskList;
 import snowman.ui.Ui;
 
 /**
- * Represents a command to add an Event task in the Snowman application.
- * When executed, it creates an Event with a description, start date, and end date,
- * adds it to the task list, updates storage, and shows a confirmation message.
+ * Represents a command that adds an Event task to the Snowman application.
+ * Executes the addition of an Event task with a description, start time,
+ * and end time, updates storage, and prepares user feedback.
  */
 public class EventCommand extends Command {
 
@@ -26,6 +26,16 @@ public class EventCommand extends Command {
         this.input = input;
     }
 
+    /**
+     * Executes the event command by parsing the input, creating an Event task,
+     * adding it to the task list, saving the updated list to storage,
+     * and preparing feedback.
+     *
+     * @param tasks Task list to which the new task is added.
+     * @param ui User interface used to display feedback.
+     * @param storage Storage used to persist tasks.
+     * @throws SnowmanException If the input format is invalid.
+     */
     @Override
     public void execute(TaskList tasks, Ui ui, Storage storage) throws SnowmanException {
 
@@ -69,10 +79,10 @@ public class EventCommand extends Command {
     }
 
     /**
-     * Validates the parsed input segments.
+     * Validates the parsed input segments to ensure all required fields are present.
      *
-     * @param parts Array of strings from parseEventInput()
-     * @throws SnowmanException if any segment is missing or empty
+     * @param parts Parsed input segments.
+     * @throws SnowmanException If the description, start time, or end time is missing or empty.
      */
     private void validate(String[] parts) throws SnowmanException {
         if (parts.length < 3
