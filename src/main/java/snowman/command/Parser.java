@@ -4,12 +4,12 @@ import snowman.SnowmanException;
 
 /**
  * Converts raw user input into the corresponding Command object in the Snowman application.
- * Determines which type of command to create based on the input string.
+ * Determines the type of command to create based on the input string.
  */
 public class Parser {
     /**
-     * Parses the raw user input and returns the corresponding Command object.
-     * Recognizes commands such as list, bye, mark, unmark, todo, deadline, event, and delete.
+     * Parses raw user input and returns the corresponding Command object.
+     * Recognizes commands such as list, bye, mark, unmark, todo, deadline, event, delete, find, and help.
      *
      * @param input Raw command input from the user.
      * @return Command object corresponding to the user input.

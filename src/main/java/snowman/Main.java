@@ -9,12 +9,24 @@ import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
 /**
- * A GUI for Snowman using FXML.
+ * The main entry point for the Snowman GUI application using JavaFX.
+ * <p>
+ * Initializes the primary stage, loads the FXML layout, injects the Snowman instance
+ * into the GUI controller, and displays the main window. Handles stage sizing
+ * and ensures the GUI is correctly linked to the underlying Snowman application logic.
  */
 public class Main extends Application {
     private final Snowman snowman = new Snowman("data/storage.txt");
 
     @Override
+    /**
+     * Starts the JavaFX application by setting up the primary stage.
+     * <p>
+     * Loads the FXML layout, creates a scene, sets stage size limits, injects
+     * the Snowman instance into the controller, and displays the window.
+     *
+     * @param stage The primary stage for this application.
+     */
     public void start(Stage stage) {
         try {
             FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("/view/MainWindow.fxml"));

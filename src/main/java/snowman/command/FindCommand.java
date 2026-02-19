@@ -9,8 +9,8 @@ import snowman.task.TaskList;
 import snowman.ui.Ui;
 
 /**
- * Represents a command to find tasks containing a specific keyword
- * in their description in the Snowman application.
+ * Represents a command that finds tasks containing a specified keyword
+ * in their descriptions within the Snowman application.
  */
 public class FindCommand extends Command {
 
@@ -26,6 +26,15 @@ public class FindCommand extends Command {
         this.input = input;
     }
 
+    /**
+     * Executes the find command by searching for tasks whose descriptions
+     * contain the specified keyword and preparing feedback.
+     *
+     * @param tasks Task list to be searched.
+     * @param ui User interface used to display feedback.
+     * @param storage Storage used to persist tasks.
+     * @throws SnowmanException If the keyword is missing or empty.
+     */
     @Override
     public void execute(TaskList tasks, Ui ui, Storage storage) throws SnowmanException {
         String keyword = input.length() > 4 ? input.substring(5).trim() : "";

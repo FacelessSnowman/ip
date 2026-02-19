@@ -5,26 +5,32 @@ import snowman.task.TaskList;
 import snowman.ui.Ui;
 
 /**
- * Represents a command for handling unrecognized or unknown user input
+ * Represents a command that handles unrecognized or unknown user input
  * in the Snowman application.
- * <p>
- * When executed, it displays a message indicating that the command
+ * Executes by displaying a message indicating that the command
  * is not recognized and suggests typing 'help' to see available commands.
- * This prevents the program from crashing on invalid input and provides
- * user-friendly feedback.
  */
 public class UnknownCommand extends Command {
 
     private final String input;
 
+    /**
+     * Creates an UnknownCommand with the specified user input.
+     *
+     * @param input Full command input from the user.
+     */
     public UnknownCommand(String input) {
         this.input = input;
     }
 
     /**
-     * Executes the UnknownCommand by displaying a message to the user
+     * Executes the unknown command by displaying a message to the user
      * indicating that the command is not recognized and suggesting
      * to type 'help' for a list of valid commands.
+     *
+     * @param tasks Task list (unused for this command).
+     * @param ui User interface used to display feedback.
+     * @param storage Storage used to persist tasks (unused for this command).
      */
     @Override
     public void execute(TaskList tasks, Ui ui, Storage storage) {
