@@ -56,7 +56,7 @@ public class DeleteCommand extends Command {
             // GUI output
             feedback = message;
         } catch (NumberFormatException | IndexOutOfBoundsException e) {
-            throw new SnowmanException("Error: Invalid task number to delete.");
+            throw new SnowmanException("Invalid task number to delete.");
         }
     }
 }

@@ -37,6 +37,10 @@ public class MainWindow extends AnchorPane {
     @FXML
     public void initialize() {
         scrollPane.vvalueProperty().bind(dialogContainer.heightProperty());
+
+        // Show welcome message in GUI
+        String welcome = "Hello, I'm Snowman! How can I help you?";
+        dialogContainer.getChildren().add(DialogBox.getSnowmanDialog(welcome, snowmanImage, "Welcome"));
     }
 
     /**

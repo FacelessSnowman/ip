@@ -18,7 +18,6 @@ import javafx.stage.Stage;
 public class Main extends Application {
     private final Snowman snowman = new Snowman("data/storage.txt");
 
-    @Override
     /**
      * Starts the JavaFX application by setting up the primary stage.
      * <p>
@@ -27,6 +26,7 @@ public class Main extends Application {
      *
      * @param stage The primary stage for this application.
      */
+    @Override
     public void start(Stage stage) {
         try {
             FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("/view/MainWindow.fxml"));
@@ -38,6 +38,9 @@ public class Main extends Application {
             stage.setMinWidth(417);
             stage.setMaxWidth(417);
             fxmlLoader.<MainWindow>getController().setSnowman(snowman); // inject the Snowman instance
+
+            // Set the window title here
+            stage.setTitle("Snowman Chatbot");
             stage.show();
         } catch (IOException e) {
             e.printStackTrace();
