@@ -1,5 +1,9 @@
 package snowman.command;
 
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
+
 import snowman.SnowmanException;
 import snowman.storage.Storage;
 import snowman.task.Event;
@@ -90,6 +94,20 @@ public class EventCommand extends Command {
                 || parts[1].trim().isEmpty()
                 || parts[2].trim().isEmpty()) {
             throw new SnowmanException("The description, /from, /to of an event cannot be empty.");
+        }
+
+        try {
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+
+            LocalDate from = LocalDate.parse(parts[1].trim(), formatter);
+            LocalDate to = LocalDate.parse(parts[2].trim(), formatter);
+
+            if (from.isAfter(to)) {
+                throw new SnowmanException("The /from date cannot be later than the /to date.");
+            }
+
+        } catch (DateTimeParseException e) {
+            throw new SnowmanException("Invalid date format. Please use yyyy-MM-dd.");
         }
     }
 }

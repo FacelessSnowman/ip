@@ -1,8 +1,12 @@
 package snowman.command;
 
+import javafx.animation.PauseTransition;
+import javafx.application.Platform;
+import javafx.util.Duration;
 import snowman.storage.Storage;
 import snowman.task.TaskList;
 import snowman.ui.Ui;
+
 
 /**
  * Represents a command that exits the Snowman application.
@@ -17,6 +21,11 @@ public class ExitCommand extends Command {
         ui.showMessage("Bye. Hope to see you again soon!");
 
         feedback = "Bye. Hope to see you again soon!";
+
+        // Wait 1 second before closing
+        PauseTransition delay = new PauseTransition(Duration.seconds(1));
+        delay.setOnFinished(event -> Platform.exit());
+        delay.play();
     }
 
     /**
