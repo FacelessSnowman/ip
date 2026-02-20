@@ -8,7 +8,7 @@ so that you won't be in such a hot-headed mess!
 
 # Quick Start
 1. Ensure you have Java 17 or above installed in your Computer.
-2. Download the latest .jar file from [here](https://github.com/FacelessSnowman/ip/blob/master/snowman.jar)
+2. Download the latest .jar file from [here](https://github.com/FacelessSnowman/ip/releases/tag/A-Release)
 3. Copy the file to the folder you want to use as the home folder.
 4. Open a command terminal, `cd` into the folder you put the jar file in, and use the `java -jar snowman.jar` command to run the application.
 
